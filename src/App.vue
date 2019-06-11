@@ -1,37 +1,30 @@
 <template>
   <div id="app">
     <h1>Star Wars Movie API</h1> 
-
-    <table>
-      <thead>
-        <tr>
-          <th>id</th>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Director</th>
-          <th>Release Date</th>
-          <th>Url</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="film in films">
-          <td>{{film.episode_id}}</td>
-          <td>{{film.title}}</td>
-          <td>{{film.opening_crawl}}</td>
-          <td>{{film.director}}</td>
-          <td>{{film.release_date}}</td>
-          <td><a :href="film.url" target="_blank">{{film.url}}</a></td>
-        </tr>
-      </tbody>
-    </table>  
+        <table>
+            <thead>
+                <tr>
+                <th>id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Director</th>
+                <th>Release Date</th>
+                <th>Url</th>
+                </tr>
+            </thead>
+            <GetApi :film="film" v-for="(film, index) in films"></GetApi>
+          </table> 
   </div>
 </template>
 
 <script>
   import axios from 'axios'
-
+  import GetApi from './components/GetApi.vue'
   export default {
     name: 'app',
+    components: {    
+      GetApi
+    },
     data: function () {
       return {
         films: []
